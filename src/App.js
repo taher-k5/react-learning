@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import  Navbar from './Components/Navbar'
 
 class App extends Component {
@@ -84,19 +84,19 @@ class App extends Component {
       style.backgroundColor = 'orange';
     }
 
-    let classes = [];
+    let additionalClasses = [];
     if (this.state.persons.length <= 1) {
-      classes.push('red');
+      additionalClasses.push( classes.red );
     }
 
     if (this.state.persons.length === 0) {
-      classes.push('bold');
+      additionalClasses.push( classes.bold );
     }
   return (
-    <div className="App">
+    <div className={classes.App}>
       <h1>Hi I Am React APP!!!!!</h1>
-      <p className={classes.join(' ')}>This is some basic text</p>
-      <buttton onClick={this.switchNames} className="p-2 bg-gray-200 cursor" style={style}>Switch Name</buttton>
+      <p className={additionalClasses.join(' ')}>This is some basic text</p>
+      <buttton onClick={this.switchNames} className={classes["btn-style"]}>Switch Name</buttton>
       {person}
       {/* {this.state.showPerson === true ?
       <div>              
