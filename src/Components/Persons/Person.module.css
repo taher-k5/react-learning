@@ -1,8 +1,14 @@
 .Navbar {
-    width: 60%;
+    width: 600px;
     margin: 16px auto;
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
     padding: 16px;
     text-align: center;
+}
+
+@media screen (min-width: 500px) {
+    .Navbar {
+        width: 450px;
+    }
 }

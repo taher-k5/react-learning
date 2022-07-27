@@ -1,0 +1,16 @@
+.btn-style{
+    padding: 12px;
+    background-color: #d3d0d0;
+    cursor: pointer;
+}
+  
+.btn-style:hover{
+background-color: #282c34;
+}
+.red{
+    color: red;
+  }
+  
+.bold{
+font-weight: bold;
+}

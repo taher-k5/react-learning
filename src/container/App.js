@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import classes from './App.module.css';
-import  Navbar from './Components/Navbar'
+import classes from '../container/App.module.css';
+import  Persons from '../Components/Persons/Persons'
+import  Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
   state = {
@@ -10,6 +11,25 @@ class App extends Component {
     ],
     showPerson: false
   };
+
+  componentWillUnmount(){
+    console.log('[app.js] component will mount');
+  }
+
+  componentDidUpdate(){
+    console.log('[app.js] component update');
+    return true;
+  }
+
+  // shouldComponentUpdate(nextProps, nextState){
+  //   console.log('this is should component update')
+  //   if(this.state.persons !== nextProps.persons)
+  //   {
+  //     return true;
+  //   }else {
+  //     return false;
+  //   }
+  // }
 
   switchNameHandler = () => {
     // console.log('call');
@@ -62,15 +82,20 @@ class App extends Component {
       person = (
         <div>
           {/* {console.log(this.state.persons)} */}
-          {this.state.persons.map((person, index) => {
-            return <Navbar 
+          <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePerson}
+            changed={this.nameChangeHandler}
+          />
+          {/* {this.state.persons.map((person, index) => {
+            return <Persons 
             click={() => this.deletePerson(index)}
             name={person.name} 
             age={person.age}
             key={person.id}
             changed={(event) => this.nameChangeHandler(event, person.id)}
             />
-          })}              
+          })}               */}
         {/* <Navbar 
           name={this.state.person[0].name} 
           age={this.state.person[0].age}/>
@@ -82,21 +107,14 @@ class App extends Component {
       );
 
       style.backgroundColor = 'orange';
-    }
-
-    let additionalClasses = [];
-    if (this.state.persons.length <= 1) {
-      additionalClasses.push( classes.red );
-    }
-
-    if (this.state.persons.length === 0) {
-      additionalClasses.push( classes.bold );
-    }
+    }    
   return (
     <div className={classes.App}>
-      <h1>Hi I Am React APP!!!!!</h1>
-      <p className={additionalClasses.join(' ')}>This is some basic text</p>
-      <buttton onClick={this.switchNames} className={classes["btn-style"]}>Switch Name</buttton>
+      <Cockpit
+        title={this.props.appTitle}
+        personsLength={this.state.persons.length}
+        clicked={this.switchNames}
+      />
       {person}
       {/* {this.state.showPerson === true ?
       <div>              
